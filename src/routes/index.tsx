@@ -46,9 +46,10 @@ function Home() {
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
           {topics.map((topic) => {
             const TopicIcon = topicIcons[topic.id];
-            return <Link key={topic.id} to="/chat" search={{ prompt: topic.prompt }} className="group grid min-h-30 grid-cols-[64px_minmax(0,1fr)_24px] items-center gap-3 rounded-sm border-[3px] border-card-border bg-card p-4 text-card-foreground shadow-tactile transition-transform hover:-translate-y-0.5 hover:shadow-tactile-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-section sm:min-h-39 sm:grid-cols-[minmax(0,1fr)_24px] sm:content-between sm:p-5" aria-label={`${topic.title}: ${topic.detail}`}>
+            const topicText = topic.copy[language];
+            return <Link key={topic.id} to="/chat" search={{ prompt: topicText.prompt }} className="group grid min-h-30 grid-cols-[64px_minmax(0,1fr)_24px] items-center gap-3 rounded-sm border-[3px] border-card-border bg-card p-4 text-card-foreground shadow-tactile transition-transform hover:-translate-y-0.5 hover:shadow-tactile-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-section sm:min-h-39 sm:grid-cols-[minmax(0,1fr)_24px] sm:content-between sm:p-5" aria-label={`${topicText.title}: ${topicText.detail}`}>
             <span aria-hidden="true" className={`grid size-15 place-items-center rounded-sm text-primary sm:col-span-2 sm:size-16 ${topic.tone === "harvest" ? "bg-topic-harvest" : topic.tone === "sky" ? "bg-topic-sky" : topic.tone === "rose" ? "bg-topic-rose" : topic.tone === "leaf" ? "bg-topic-leaf" : topic.tone === "mint" ? "bg-topic-mint" : "bg-topic-sun"}`}><TopicIcon className="size-8" strokeWidth={2.4} /></span>
-            <span className="min-w-0"><span className="block font-display text-lg font-extrabold leading-tight sm:text-xl">{topic.title}</span><span className="mt-1 block text-sm font-medium leading-snug text-muted-foreground sm:text-base">{topic.detail}</span></span>
+            <span className="min-w-0"><span className="block font-display text-lg font-extrabold leading-tight sm:text-xl">{topicText.title}</span><span className="mt-1 block text-sm font-medium leading-snug text-muted-foreground sm:text-base">{topicText.detail}</span></span>
             <ArrowRight aria-hidden="true" className="size-6 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
           </Link>;})}
         </div>
