@@ -145,9 +145,9 @@ function Chat() {
         {voiceError && <p role="alert" className="mb-2 border-l-4 border-destructive bg-muted px-3 py-2 text-sm font-bold text-foreground">{voiceError}</p>}
         {listening && <p role="status" className="mb-2 font-bold text-primary">{text.listen}</p>}
         <div className="grid grid-cols-[minmax(0,1fr)_64px] items-stretch gap-3 sm:grid-cols-[minmax(0,1fr)_72px]">
-          <PromptInput onSubmit={({ text: submitted }) => sendMessage(submitted)} className="min-w-0 [&_[data-slot=input-group]]:border-2 [&_[data-slot=input-group]]:border-primary [&_[data-slot=input-group]]:bg-card [&_[data-slot=input-group]]:focus-within:ring-4 [&_[data-slot=input-group]]:focus-within:ring-ring">
+          <PromptInput onSubmit={({ text: submitted }) => sendMessage(submitted)} className="min-w-0 [&_[data-slot=input-group]]:flex-row [&_[data-slot=input-group]]:items-end [&_[data-slot=input-group]]:border-2 [&_[data-slot=input-group]]:border-primary [&_[data-slot=input-group]]:bg-card [&_[data-slot=input-group]]:focus-within:ring-4 [&_[data-slot=input-group]]:focus-within:ring-ring">
             <PromptInputTextarea ref={textareaRef} aria-label={text.placeholder} placeholder={text.placeholder} value={draft} onChange={(event) => setDraft(event.target.value)} className="min-h-16 px-4 text-base placeholder:text-muted-foreground sm:text-lg" />
-            <PromptInputFooter className="justify-end px-2 pb-2"><PromptInputSubmit status="ready" disabled={!draft.trim()} aria-label={text.send} title={text.send} className="size-12 bg-cta text-cta-foreground hover:bg-cta-hover [&_svg]:size-5" /></PromptInputFooter>
+            <PromptInputFooter className="w-fit shrink-0 px-2 pb-2"><PromptInputSubmit status="ready" disabled={!draft.trim()} aria-label={text.send} title={text.send} className="size-12 bg-cta text-cta-foreground hover:bg-cta-hover [&_svg]:size-5" /></PromptInputFooter>
           </PromptInput>
           <Button type="button" variant="hero" onClick={toggleMicrophone} aria-label={listening ? text.stop : text.microphone} title={listening ? text.stop : text.microphone} aria-pressed={listening} className="h-full min-h-18 w-full p-0 [&_svg]:size-7">{listening ? <MicOff aria-hidden="true" /> : <Mic aria-hidden="true" />}</Button>
         </div>
